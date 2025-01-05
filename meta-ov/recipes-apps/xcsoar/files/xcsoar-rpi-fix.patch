@@ -1,0 +1,21 @@
+diff --git a/src/ui/canvas/freetype/Font.cpp b/src/ui/canvas/freetype/Font.cpp
+index 517e2e8703..1e2c8d4f6f 100644
+--- a/src/ui/canvas/freetype/Font.cpp
++++ b/src/ui/canvas/freetype/Font.cpp
+@@ -209,14 +209,14 @@ Font::Destroy() noexcept
+   ::FT_Done_Face(face);
+   face = nullptr;
+ }
+-
++tstring_view *debug;
+ static void
+ ForEachChar(tstring_view text, std::invocable<unsigned> auto f)
+ {
+ #ifndef _UNICODE
+   assert(ValidateUTF8(text));
+ #endif
+-
++  debug = &text;
+   while (!text.empty()) {
+     const unsigned ch = NextChar(text);
+     f(ch);
